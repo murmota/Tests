@@ -14,9 +14,10 @@ with app.app_context():
 def index():
     if request.method == 'POST':
         content = request.form['content']
-        new_record = StringRecord(content=content)
-        db.session.add(new_record)
-        db.session.commit()
+        if content:  # Check for empty string
+            new_record = StringRecord(content=content)
+            db.session.add(new_record)
+            db.session.commit()
         return redirect(url_for('index'))
     records = StringRecord.query.all()
     return render_template('index.html', records=records)

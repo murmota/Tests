@@ -14,10 +14,14 @@
       <button type="submit">Submit</button>
     </form>
     <h2>All Records:</h2>
+    {% if records %}
     <ul>
       {% for record in records %}
         <li>{{ record.content }}</li>
       {% endfor %}
     </ul>
+    {% else %}
+    <p>No records found</p>
+    {% endif %}
   </body>
 </html>
